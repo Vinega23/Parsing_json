@@ -1,5 +1,7 @@
 import json
 import time
+
+
 with open('sample-data.json') as file:
     data = json.load(file)
 
