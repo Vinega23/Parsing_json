@@ -1,12 +1,11 @@
 import json
-from datetime import timezone
-import datetime
-
+import time
 with open('sample-data.json') as file:
     data = json.load(file)
 
 index = 0
 
+start = time.time()
 for item in data:
     print(f"\nContainer {index}:")
     print(f"Name: {item['name']}")
@@ -18,7 +17,6 @@ for item in data:
         print(f"Memory usage: {item['state']['memory']['usage']}")
     else:
         print("Memory usage: 0")
-
     print(f"Created at: {item['created_at']}")
     print(f"Status: {item['status']}")
     if item['state'] and ['network'] is not None:
@@ -35,7 +33,10 @@ for item in data:
             print(f"lo: {item['state']['network']['lo']['addresses'][0]['address']}")
         else:
             print("lo: None")
-
     else:
         print("IP addresses: None")
     index += 1
+
+end = time.time()
+total_time = end - start
+print(format(total_time))
